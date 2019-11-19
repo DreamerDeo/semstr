@@ -23,7 +23,7 @@ class SdpConverter(DependencyConverter):
                                         is_top=(top == "+"), frame=frame)
 
     def edges_for_orphan(self, top):
-        return [self.Edge(0, self.TOP, False)] if top else []
+        return [self.Edge(0, self.TOP, False)] if top else [self.Edge(0, self.ORPHAN, False)]
 
     def generate_lines(self, graph, test):
         yield from super().generate_lines(graph, test)

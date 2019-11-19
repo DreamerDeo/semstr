@@ -9,6 +9,9 @@ from ucca.layer1 import EdgeTags
 
 from .format import FormatConverter
 
+PUNCT_SET={
+    ',','.'
+}
 
 class DependencyConverter(FormatConverter):
     """
@@ -723,7 +726,9 @@ class DependencyConverter(FormatConverter):
 
     def is_punct(self, dep_node):
         return bool(dep_node.token and
-                    {dep_node.token.tag, dep_node.token.pos} & {layer0.NodeTags.Punct, self.punct_tag})
+                    ({dep_node.token.tag, dep_node.token.pos} & {layer0.NodeTags.Punct, self.punct_tag}
+                    or {dep_node.token.tag, dep_node.token.pos} & PUNCT_SET )
+                    )
 
     def is_flat(self, edge):
         return edge.stripped_rel == EdgeTags.Terminal
