@@ -12,6 +12,11 @@ from ucca import ioutil, layer1
 from ucca.convert import from_text, to_text, from_json, to_json
 from ucca.normalization import normalize
 
+
+from sys import path as pylib #im naming it as pylib so that we won't get confused between os.path and sys.path
+import os
+pylib += [os.path.abspath(r'toolkit/semstr')]
+
 from semstr.cfgutil import add_verbose_arg, add_boolean_option
 from semstr.validation import validate, print_errors
 
